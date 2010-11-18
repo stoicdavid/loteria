@@ -11,7 +11,7 @@
 
 @implementation RootViewController
 
-
+#pragma mark -
 #pragma mark View lifecycle
 
 
@@ -21,6 +21,10 @@
 	
 	//appDelegate = (LoteriaAppDelegate *)[[UIApplication sharedApplication] delegate];
 	
+	listaSorteos = [[XMLParser alloc] initXMLParser];
+	[listaSorteos performSelectorOnMainThread:@selector(getInfoFromServer) withObject:nil waitUntilDone:YES];
+	//[listaSorteos getInfoFromServer];
+	NSLog(@"%@",listaSorteos.sorts);
 	self.title = @"Sorteos";
 	//interestingTags = [[NSSet alloc] initWithObjects: INTERESTING_TAG_NAMES];
 
@@ -32,26 +36,26 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	
+	NSLog(@"%@",listaSorteos.sorts);	
 	
 }
 
-/*
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+	NSLog(@"%@",listaSorteos.sorts);
 
 }
-*/
-/*
+
+
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
 }
-*/
-/*
+
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
 }
-*/
+
 
 /*
  // Override to allow orientations other than the default portrait orientation.
@@ -62,36 +66,41 @@
  */
 
 
-
+#pragma mark -
 #pragma mark Table view data source
 
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 9;
+    return 1;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	NSLog(@"%@",listaSorteos.sorts);
     return 9;
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+
     
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
     
 	// Configure the cell.
 	//NSString *llave = [@"sorteo" stringByAppendingString:[NSString stringWithFormat:@"%i",indexPath.row]];
-	cell.textLabel.text = [[listaSorteos.sorts objectAtIndex:indexPath.row] objectForKey:@"nombre"];
-	cell.detailTextLabel.text = [[listaSorteos.sorts objectAtIndex:indexPath.row] objectForKey:@"descripcion"];
-
+	NSLog(@"%@",listaSorteos.sorts);
+	Sorteo *s=[listaSorteos.sorts objectAtIndex:indexPath.row];
+	cell.textLabel.text = s.nombre;
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"%i",s.sorteoId];
+	
     return cell;
 }
 
@@ -138,7 +147,7 @@
 
 #pragma mark -
 #pragma mark Table view delegate
-/*
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
 	
@@ -149,7 +158,7 @@
 	 [detailViewController release];
 	
 }
-*/
+
 
 #pragma mark -
 #pragma mark Memory management
@@ -168,8 +177,9 @@
 
 
 - (void)dealloc {
+	//[listaSorteos release];
     [super dealloc];
-	[listaSorteos release];
+
 }
 
 

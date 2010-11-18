@@ -15,7 +15,7 @@
 
 
 -(NSString*)description{
-	return [NSString stringWithFormat:@"Sorteo %@ con numero %i imagen %@ descripcion:%@",nombre,sorteoId,image,descripcion];
+	return [NSString stringWithFormat:@"Nombre %@ con numero %i imagen %@ descripcion:%@",nombre,sorteoId,image,descripcion];
 }
 
 -(void)dealloc

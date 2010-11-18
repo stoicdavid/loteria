@@ -12,7 +12,7 @@
 @implementation XMLParser
 @synthesize sorts;
 
-#define INTERESTING_TAG_NAMES @"nombre", @"descripcion", @"image",@"id",@"numero",@"flag-extra", nil
+#define INTERESTING_TAG_NAMES @"sorteo", nil
 
 
 - (XMLParser *) initXMLParser {
@@ -32,7 +32,7 @@
 {
 	sorteosData = [[NSMutableData alloc] init];
 	NSURL *url = [NSURL URLWithString:
-				  @"http://localhost:3000/sorteos.xml"];
+				  @"http://localhost:3000/inicio"];
 	NSURLRequest *request = [[NSURLRequest alloc] initWithURL: url];
 	NSURLConnection *connection = [[NSURLConnection alloc]
 								   initWithRequest:request
@@ -69,7 +69,7 @@
 }
 
 - (void) connectionDidFinishLoading: (NSURLConnection*) connection {
-	[self parsearSorteos];
+	[self performSelectorOnMainThread:@selector(parsearSorteos) withObject:nil waitUntilDone:YES];
 }
 
 
@@ -95,12 +95,16 @@
 	if ([elementName isEqualToString:@"sorteo"]) {
 		[sorteo release];
 		sorteo = [[Sorteo alloc] init];
-
+		sorteo.nombre = [attributeDict objectForKey:@"nombre"];
+		sorteo.sorteoId = [[attributeDict objectForKey:@"id"]integerValue];
+		sorteo.image = [attributeDict objectForKey:@"imagen"];
 
 	}
 	else if ([interestingTags containsObject: elementName]) { 
 		currentElementName = elementName;
-		
+		//sorteo.nombre = [attributeDict objectForKey:@"nombre"];
+		//sorteo.sorteoId = [[attributeDict objectForKey:@"id"]integerValue];
+		//sorteo.image = [attributeDict objectForKey:@"imagen"];
 	}
 	
 }

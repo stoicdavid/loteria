@@ -28,14 +28,14 @@
     // Override point for customization after application launch.
     
     // Add the navigation controller's view to the window and display.
-	XMLParser *parser = [[XMLParser alloc] initXMLParser];
-	[parser getInfoFromServer];
 	
 	[window addSubview:navigationController.view];
+	
+	
 	[window makeKeyAndVisible];	  
 	
 
-    [NSThread detachNewThreadSelector:@selector(getInitialData:) toTarget:self withObject:nil];
+    //[NSThread detachNewThreadSelector:@selector(getInitialData:) toTarget:self withObject:nil];
 
 
 	

@@ -12,7 +12,7 @@
 
 
 
-@interface XMLParser : NSObject {
+@interface XMLParser : NSOperation {
 	
 	NSMutableData *sorteosData;
 	NSString *currentElementName;
@@ -22,7 +22,7 @@
 	Sorteo *sorteo;
 }
 
-@property (readonly,retain) NSMutableArray *sorts;
+@property (retain) NSMutableArray *sorts;
 - (XMLParser *) initXMLParser;
 -(void)getInfoFromServer;
 

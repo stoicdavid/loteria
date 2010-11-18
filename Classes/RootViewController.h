@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "XMLParser.h"
+#import "Sorteo.h"
 
 @interface RootViewController : UITableViewController {
 	XMLParser *listaSorteos;
-	
+
 }
 
 
