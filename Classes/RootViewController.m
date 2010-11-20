@@ -11,6 +11,8 @@
 
 @implementation RootViewController
 
+@synthesize listaSorteos;
+
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -19,31 +21,32 @@
  
     [super viewDidLoad];
 	
-	//appDelegate = (LoteriaAppDelegate *)[[UIApplication sharedApplication] delegate];
 	
-	listaSorteos = [[XMLParser alloc] initXMLParser];
-	[listaSorteos performSelectorOnMainThread:@selector(getInfoFromServer) withObject:nil waitUntilDone:YES];
-	//[listaSorteos getInfoFromServer];
-	NSLog(@"%@",listaSorteos.sorts);
+
+	self.listaSorteos = [NSMutableArray array];
+	
+	
+	
 	self.title = @"Sorteos";
-	//interestingTags = [[NSSet alloc] initWithObjects: INTERESTING_TAG_NAMES];
+	
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	[self addObserver:self forKeyPath:@"listaSorteos" options:0 context:NULL];
 }
 
 
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	NSLog(@"%@",listaSorteos.sorts);	
+
 	
 }
 
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-	NSLog(@"%@",listaSorteos.sorts);
+
 
 }
 
@@ -66,6 +69,23 @@
  */
 
 
+- (void)agregarSorteos:(NSArray *)sorteos
+{
+	
+	//[self willChangeValueForKey:@"listaSorteos"];
+	[self.listaSorteos addObjectsFromArray:sorteos];
+	//[self didChangeValueForKey:@"listaSorteos"];	
+}
+
+// para los cambios en la interfaz no se usa por ahora
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    [self.tableView reloadData];
+}
+
 #pragma mark -
 #pragma mark Table view data source
 
@@ -77,8 +97,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	NSLog(@"%@",listaSorteos.sorts);
-    return 9;
+    return [listaSorteos count];
 }
 
 
@@ -95,12 +114,15 @@
     }
     
 	// Configure the cell.
-	//NSString *llave = [@"sorteo" stringByAppendingString:[NSString stringWithFormat:@"%i",indexPath.row]];
-	NSLog(@"%@",listaSorteos.sorts);
-	Sorteo *s=[listaSorteos.sorts objectAtIndex:indexPath.row];
+
+	NSLog(@"%@",listaSorteos);
+	if ([listaSorteos count]) {
+		
+
+	Sorteo *s=[listaSorteos objectAtIndex:indexPath.row];
 	cell.textLabel.text = s.nombre;
 	cell.detailTextLabel.text = [NSString stringWithFormat:@"%i",s.sorteoId];
-	
+	}	
     return cell;
 }
 
@@ -171,13 +193,15 @@
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
+
+	self.listaSorteos = nil;
+    
+    [self removeObserver:self forKeyPath:@"listaSorteos"];
 }
 
 
 - (void)dealloc {
-	//[listaSorteos release];
+	[listaSorteos release];
     [super dealloc];
 
 }

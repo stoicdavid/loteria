@@ -11,11 +11,11 @@
 #import "Sorteo.h"
 
 @interface RootViewController : UITableViewController {
-	XMLParser *listaSorteos;
+	NSMutableArray *listaSorteos;
 
 }
 
-
-
+@property (nonatomic,retain) NSMutableArray *listaSorteos;
+- (void)agregarSorteos:(NSArray *)sorteos;
 
 @end

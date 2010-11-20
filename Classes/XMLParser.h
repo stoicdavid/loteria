@@ -12,18 +12,18 @@
 
 
 
-@interface XMLParser : NSOperation {
+@interface XMLParser : NSObject<NSXMLParserDelegate> {
 	
-	NSMutableData *sorteosData;
+
 	NSString *currentElementName;
 	NSMutableString *currentText;
 	NSSet *interestingTags;
 	NSMutableArray *sorts;
 	Sorteo *sorteo;
+//	BOOL finished;
 }
-
-@property (retain) NSMutableArray *sorts;
-- (XMLParser *) initXMLParser;
--(void)getInfoFromServer;
+//@property BOOL finished;
+@property (nonatomic, retain) NSMutableArray *sorts;
+-(void)parsearSorteos:(NSMutableData *)data;
 
 @end

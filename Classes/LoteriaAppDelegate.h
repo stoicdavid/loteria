@@ -9,18 +9,21 @@
 #import <UIKit/UIKit.h>
 #import "SplashView.h"
 #import "XMLParser.h"
-@interface LoteriaAppDelegate : NSObject <UIApplicationDelegate> {
+#import "RootViewController.h"
+@class XMLParser, RootViewController;
+@interface LoteriaAppDelegate : NSObject <UIApplicationDelegate,SplashViewDelegate> {
     
     UIWindow *window;
     UINavigationController *navigationController;
-	SplashView *splash;
-
+	RootViewController *lista;
+	XMLParser *parser;
+	NSMutableData *datos;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
-@property (nonatomic, retain) IBOutlet SplashView *splash;
-
+@property (nonatomic, retain) IBOutlet RootViewController *lista;
+@property (nonatomic, retain) NSMutableData *datos;
 
 @end
 

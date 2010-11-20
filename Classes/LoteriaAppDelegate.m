@@ -7,16 +7,16 @@
 //
 
 #import "LoteriaAppDelegate.h"
-#import "RootViewController.h"
+
 
 
 @implementation LoteriaAppDelegate
 
 @synthesize window;
 @synthesize navigationController;
-@synthesize splash;
 
-
+@synthesize lista;
+@synthesize datos;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -24,43 +24,67 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    
-    // Override point for customization after application launch.
-    
-    // Add the navigation controller's view to the window and display.
-	
 	[window addSubview:navigationController.view];
+
+	NSURL *url = [NSURL URLWithString:
+				  @"http://www.lotenalweb.com:7080/resultados/sorteos.xml"];
+	NSURLRequest *request = [[NSURLRequest alloc] initWithURL: url];
+	NSURLConnection *connection = [[NSURLConnection alloc]
+								   initWithRequest:request delegate:self];
+	
+	[connection release];	
+	[window makeKeyAndVisible];		
+	SplashView *mySplash = [[SplashView alloc] initWithImage:[UIImage imageNamed:@"im1.png"]];	
+
+
+	mySplash.animation = SplashViewAnimationFade;
+	mySplash.delay = 3;
+	mySplash.touchAllowed = YES;
+	mySplash.delegate = self;
+	
+	[mySplash startSplash];
+	[mySplash release];
 	
 	
-	[window makeKeyAndVisible];	  
-	
-
-    //[NSThread detachNewThreadSelector:@selector(getInitialData:) toTarget:self withObject:nil];
-
-
-	
-
-	return YES;
+		return YES;
 }
 
--(void)getInitialData:(id)obj
+-(void)splashIsDone
+	
 {
 
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	
+	NSLog(@"Finish total");	
+}
 
-	[window addSubview:splash];
-	[NSThread sleepForTimeInterval:3.0]; // simulate waiting for server response
-		
-	
-	//[splash dismissSplash];
-	
-	[splash performSelectorOnMainThread:@selector(dismissSplash) withObject:nil waitUntilDone:YES];	
-	
-	[pool release];	
+
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+	datos = [[NSMutableData alloc]init];
+	[datos appendData: data];
+
+}
+
+
+-(void) connection:(NSURLConnection *)connection didFailWithError: (NSError *)error {
+	UIAlertView *errorAlert = [[UIAlertView alloc]
+							   initWithTitle: [error localizedDescription]
+							   message: [error localizedFailureReason]
+							   delegate:nil
+							   cancelButtonTitle:@"OK"
+							   otherButtonTitles:nil];
+	[errorAlert show];
+	[errorAlert release];
+}
+
+- (void) connectionDidFinishLoading: (NSURLConnection*) connection {
+	parser= [[XMLParser alloc] init];
+	[parser parsearSorteos:datos];
+	[self.lista agregarSorteos:parser.sorts];
+	[self.lista.tableView reloadData];//aqui hago la actualización de la tabla, aunque puede utilizarse el observer
+	NSLog(@"%@",lista.listaSorteos);
+	[parser release];	
 	
 }
-    
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -112,9 +136,9 @@
 
 
 - (void)dealloc {
+	[lista release];
 	[navigationController release];
 	[window release];
-	[splash release];
 	[super dealloc];
 }
 

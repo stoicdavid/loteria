@@ -15,10 +15,10 @@
 #define INTERESTING_TAG_NAMES @"sorteo", nil
 
 
-- (XMLParser *) initXMLParser {
+- (XMLParser *) init{
 	
 	[super init];
-	
+	sorteo=[[Sorteo alloc]init];
 	return self;
 }
 
@@ -27,7 +27,7 @@
 #pragma mark -
 #pragma mark NSURLConnection
 
-
+/*
 -(void)getInfoFromServer
 {
 	sorteosData = [[NSMutableData alloc] init];
@@ -35,15 +35,17 @@
 				  @"http://localhost:3000/inicio"];
 	NSURLRequest *request = [[NSURLRequest alloc] initWithURL: url];
 	NSURLConnection *connection = [[NSURLConnection alloc]
-								   initWithRequest:request
-								   delegate:self];
-	[connection release];
+								   initWithRequest:request delegate:self startImmediately:NO];
+
+	[connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+    [connection start];
+	//[connection release];
 	[request release];
 	
 }
+*/
 
-
-
+/*
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
 	[sorteosData appendData: data];
 }
@@ -60,19 +62,21 @@
 	[errorAlert release];
 }
 
-
-- (void) parsearSorteos {
-	NSXMLParser *sorteoParser = [[NSXMLParser alloc] initWithData:sorteosData];
+*/
+- (void) parsearSorteos:(NSMutableData *)data {
+	NSXMLParser *sorteoParser = [[NSXMLParser alloc] initWithData:data];
 	sorteoParser.delegate = self;
 	[sorteoParser parse];
 	[sorteoParser release];
 }
-
+/*
 - (void) connectionDidFinishLoading: (NSURLConnection*) connection {
-	[self performSelectorOnMainThread:@selector(parsearSorteos) withObject:nil waitUntilDone:YES];
+	[self parsearSorteos];
+	//[connection release];	
+
 }
 
-
+*/
 #pragma mark NSXMLParser callbacks
 
 
@@ -166,13 +170,13 @@
 	[interestingTags release];
 	
 	
-	NSLog(@"%@",sorts);
+	//NSLog(@"%@",sorts);
 }
 
 - (void) dealloc {
-	
+
 	[sorteo release];
-	[sorts release];
+	//[sorts release];
 	
 	[super dealloc];
 }

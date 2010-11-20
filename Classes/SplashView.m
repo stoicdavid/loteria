@@ -11,45 +11,90 @@
 
 @implementation SplashView
 
+@synthesize delegate;
+@synthesize image;
+@synthesize delay;
+@synthesize touchAllowed;
+@synthesize animation;
+@synthesize isFinishing;
+@synthesize animationDelay;
 
-- (id)initWithFrame:(CGRect)frame {
-    if ((self = [super initWithFrame:frame])) {
-        // Initialization code
-    }
-    return self;
+- (id)initWithImage:(UIImage *)screenImage {
+	
+	if (self = [super initWithFrame:[[UIScreen mainScreen] applicationFrame]]) {
+		self.image = screenImage;
+		self.delay = 2;
+		self.touchAllowed = NO;
+		self.animation = SplashViewAnimationNone;
+		self.animationDelay = .5;
+		self.isFinishing = NO;
+	}
+	return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)startSplash {
+	
+	[[[[UIApplication sharedApplication] windows] objectAtIndex:0] addSubview:self];
+	splashImage = [[UIImageView alloc] initWithImage:self.image];
+	[self addSubview:splashImage];
+	[self performSelector:@selector(dismissSplash) withObject:self afterDelay:self.delay];
 }
-*/
+
 - (void)dismissSplash {
+	
+	if (self.isFinishing || self.animation == SplashViewAnimationNone) {
+		[self dismissSplashFinish];
+	} else if (self.animation == SplashViewAnimationSlideLeft) {
+		CABasicAnimation *animSplash = [CABasicAnimation animationWithKeyPath:@"transform"];
+		animSplash.duration = self.animationDelay;
+		animSplash.removedOnCompletion = NO;
+		animSplash.fillMode = kCAFillModeForwards;
+		animSplash.toValue = [NSValue valueWithCATransform3D:
+							  CATransform3DMakeAffineTransform
+							  (CGAffineTransformMakeTranslation(-320, 0))];
+		animSplash.delegate = self;
+		[self.layer addAnimation:animSplash forKey:@"animateTransform"];
+	} else if (self.animation == SplashViewAnimationFade) {
+		CABasicAnimation *animSplash = [CABasicAnimation animationWithKeyPath:@"opacity"];
+		animSplash.duration = self.animationDelay;
+		animSplash.removedOnCompletion = NO;
+		animSplash.fillMode = kCAFillModeForwards;
+		animSplash.toValue = [NSNumber numberWithFloat:0];
+		animSplash.delegate = self;
+		[self.layer addAnimation:animSplash forKey:@"animateOpacity"];
+	}
+	self.isFinishing = YES;
+}
 
-	CABasicAnimation *animSplash = [CABasicAnimation animationWithKeyPath:@"opacity"];
-	animSplash.duration = .7;
-	animSplash.removedOnCompletion = NO;
-	animSplash.fillMode = kCAFillModeForwards;
-	animSplash.toValue = [NSNumber numberWithFloat:0];
-	animSplash.delegate = self;
-	[self.layer addAnimation:animSplash forKey:@"animateOpacity"];
+- (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag {
 	
+	[self dismissSplashFinish];
+}
+
+- (void)dismissSplashFinish {
 	
-	
+	if (splashImage) {
+		[splashImage removeFromSuperview];
+		[self removeFromSuperview];
+		[image release];
+	}		
+	if (self.delegate != NULL && [self.delegate respondsToSelector:@selector(splashIsDone)]) {
+		[delegate splashIsDone];
+	}
 	
 }
 
--(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-{
-	[self removeFromSuperview];
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+	
+	if (self.touchAllowed) {
+		[self dismissSplash];
+	}
 }
-
 
 - (void)dealloc {
     [super dealloc];
 }
+
 
 
 @end
