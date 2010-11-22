@@ -9,21 +9,25 @@
 #import <Foundation/Foundation.h>
 #import "Sorteo.h"
 
+#import "Boleto.h"
 
 
 
-@interface XMLParser : NSObject<NSXMLParserDelegate> {
+@interface XMLParserBoleto : NSObject<NSXMLParserDelegate> {
 	
 
 	NSString *currentElementName;
 	NSMutableString *currentText;
+	NSString *currentSerie;
 	NSSet *interestingTags;
-	NSMutableArray *sorts;
-	Sorteo *sorteo;
-//	BOOL finished;
+	//NSMutableArray *sorts;
+	NSMutableDictionary *serial;
+	Boleto *boleto;
+	BOOL serie;
 }
 //@property BOOL finished;
 @property (nonatomic, retain) NSMutableArray *sorts;
--(void)parsearSorteos:(NSMutableData *)data;
+@property (nonatomic, retain) Boleto *boleto;
+-(void)parsearBoletos:(NSMutableData *)data;
 
 @end

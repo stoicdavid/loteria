@@ -172,13 +172,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+
+	Sorteo *s=[[Sorteo alloc]init];
+	s=[listaSorteos objectAtIndex:indexPath.row];
+	SorteoViewController *detailViewController = [[SorteoViewController alloc] initWithNibName:@"SorteoViewController" sorteo:s];
 	
-	 SorteoViewController *detailViewController = [[SorteoViewController alloc] initWithNibName:@"SorteoViewController" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
+	[self.navigationController pushViewController:detailViewController animated:YES];
 	
+	[detailViewController release];
+	[s release];
 }
 
 

@@ -19,6 +19,8 @@
 		AA74470012921D2300D1619C /* SorteoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA7446FE12921D2300D1619C /* SorteoViewController.xib */; };
 		AA744A4C129262C600D1619C /* Sorteo.m in Sources */ = {isa = PBXBuildFile; fileRef = AA744A4B129262C600D1619C /* Sorteo.m */; };
 		AA744A5D1292659600D1619C /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AA744A5C1292659600D1619C /* XMLParser.m */; };
+		AA9D41641298A80500CD0A63 /* Boleto.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9D41631298A80500CD0A63 /* Boleto.m */; };
+		AA9D42261298B76300CD0A63 /* XMLParserBoleto.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9D42251298B76300CD0A63 /* XMLParserBoleto.m */; };
 		AAA201021291156700145963 /* im1.png in Resources */ = {isa = PBXBuildFile; fileRef = AAA201011291156700145963 /* im1.png */; };
 		AAA2012112911D4200145963 /* SplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA2012012911D4200145963 /* SplashView.m */; };
 		AAA20176129122C000145963 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA20175129122C000145963 /* QuartzCore.framework */; };
@@ -45,6 +47,10 @@
 		AA744A4B129262C600D1619C /* Sorteo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sorteo.m; sourceTree = "<group>"; };
 		AA744A5B1292659600D1619C /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
 		AA744A5C1292659600D1619C /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
+		AA9D41621298A80500CD0A63 /* Boleto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Boleto.h; sourceTree = "<group>"; };
+		AA9D41631298A80500CD0A63 /* Boleto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Boleto.m; sourceTree = "<group>"; };
+		AA9D42241298B76300CD0A63 /* XMLParserBoleto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParserBoleto.h; sourceTree = "<group>"; };
+		AA9D42251298B76300CD0A63 /* XMLParserBoleto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBoleto.m; sourceTree = "<group>"; };
 		AAA201011291156700145963 /* im1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = im1.png; sourceTree = "<group>"; };
 		AAA2011F12911D4200145963 /* SplashView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashView.h; sourceTree = "<group>"; };
 		AAA2012012911D4200145963 /* SplashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashView.m; sourceTree = "<group>"; };
@@ -80,7 +86,11 @@
 				AA744A4A129262C600D1619C /* Sorteo.h */,
 				AA744A4B129262C600D1619C /* Sorteo.m */,
 				AA744A5B1292659600D1619C /* XMLParser.h */,
+				AA9D42241298B76300CD0A63 /* XMLParserBoleto.h */,
+				AA9D42251298B76300CD0A63 /* XMLParserBoleto.m */,
 				AA744A5C1292659600D1619C /* XMLParser.m */,
+				AA9D41621298A80500CD0A63 /* Boleto.h */,
+				AA9D41631298A80500CD0A63 /* Boleto.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -208,6 +218,8 @@
 				AA7446FF12921D2300D1619C /* SorteoViewController.m in Sources */,
 				AA744A4C129262C600D1619C /* Sorteo.m in Sources */,
 				AA744A5D1292659600D1619C /* XMLParser.m in Sources */,
+				AA9D41641298A80500CD0A63 /* Boleto.m in Sources */,
+				AA9D42261298B76300CD0A63 /* XMLParserBoleto.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

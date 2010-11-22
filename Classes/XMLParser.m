@@ -12,7 +12,7 @@
 @implementation XMLParser
 @synthesize sorts;
 
-#define INTERESTING_TAG_NAMES @"sorteo", nil
+#define INTERESTING_TAG_NAMES @"sorteo",@"tipo",@"cantidad",@"nosorteo",@"noboleto",@"nombre",@"series", nil
 
 
 - (XMLParser *) init{
