@@ -24,6 +24,8 @@
 		AAA201021291156700145963 /* im1.png in Resources */ = {isa = PBXBuildFile; fileRef = AAA201011291156700145963 /* im1.png */; };
 		AAA2012112911D4200145963 /* SplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA2012012911D4200145963 /* SplashView.m */; };
 		AAA20176129122C000145963 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA20175129122C000145963 /* QuartzCore.framework */; };
+		AACB673812A4DE14009BBB0A /* portada.png in Resources */ = {isa = PBXBuildFile; fileRef = AACB673712A4DE14009BBB0A /* portada.png */; };
+		AACB674A12A4E339009BBB0A /* portada@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AACB674912A4E339009BBB0A /* portada@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,8 @@
 		AAA2011F12911D4200145963 /* SplashView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashView.h; sourceTree = "<group>"; };
 		AAA2012012911D4200145963 /* SplashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashView.m; sourceTree = "<group>"; };
 		AAA20175129122C000145963 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AACB673712A4DE14009BBB0A /* portada.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = portada.png; sourceTree = "<group>"; };
+		AACB674912A4E339009BBB0A /* portada@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "portada@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +131,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AACB674912A4E339009BBB0A /* portada@2x.png */,
+				AACB673712A4DE14009BBB0A /* portada.png */,
 				AA7446FE12921D2300D1619C /* SorteoViewController.xib */,
 				AAA201011291156700145963 /* im1.png */,
 				28F335F01007B36200424DE2 /* RootViewController.xib */,
@@ -201,6 +207,8 @@
 				28F335F11007B36200424DE2 /* RootViewController.xib in Resources */,
 				AAA201021291156700145963 /* im1.png in Resources */,
 				AA74470012921D2300D1619C /* SorteoViewController.xib in Resources */,
+				AACB673812A4DE14009BBB0A /* portada.png in Resources */,
+				AACB674A12A4E339009BBB0A /* portada@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +238,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -237,6 +246,8 @@
 				GCC_PREFIX_HEADER = Loteria_Prefix.pch;
 				INFOPLIST_FILE = "Loteria-Info.plist";
 				PRODUCT_NAME = Loteria;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};

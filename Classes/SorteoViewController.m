@@ -46,7 +46,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	
 	NSURL *url = [NSURL URLWithString:
-				  @"http://localhost:3000/inicio/ganador.xml"];
+				  @"http://localhost:3000/inicio/noganador.xml"];
 	NSURLRequest *request = [[NSURLRequest alloc] initWithURL: url];
 	NSURLConnection *connection = [[NSURLConnection alloc]
 								   initWithRequest:request delegate:self];
@@ -69,6 +69,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 							   delegate:nil
 							   cancelButtonTitle:@"OK"
 							   otherButtonTitles:nil];
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	[errorAlert show];
 	[errorAlert release];
 }
@@ -81,6 +82,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 	//[self.lista agregarSorteos:parser.sorts];
 	[parser release];
 	NSLog(@"%@",boleto);
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 		
 	
 }

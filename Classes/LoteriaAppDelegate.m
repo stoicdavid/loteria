@@ -34,7 +34,7 @@
 	
 	[connection release];	
 	[window makeKeyAndVisible];		
-	SplashView *mySplash = [[SplashView alloc] initWithImage:[UIImage imageNamed:@"im1.png"]];	
+	SplashView *mySplash = [[SplashView alloc] initWithImage:[UIImage imageNamed:@"portada.png"]];	
 
 
 	mySplash.animation = SplashViewAnimationFade;
