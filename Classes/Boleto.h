@@ -13,6 +13,7 @@
 	NSNumber *nosorteo;
 	NSNumber *noboleto;
 	NSString *signo;
+	NSString *fecha;
 	BOOL ganador;
 	NSNumber *sorteoId;
 	NSString *tipo;
@@ -27,6 +28,7 @@
 @property (nonatomic, copy) NSString *signo;
 @property BOOL ganador;
 @property (nonatomic, retain) NSNumber *sorteoId;
+@property (nonatomic, copy) NSString *fecha;
 @property (nonatomic, copy) NSString *tipo;
 @property (nonatomic, copy) NSString *cantidad;
 @property (nonatomic, retain) NSMutableArray *series;

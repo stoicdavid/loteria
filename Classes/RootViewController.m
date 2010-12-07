@@ -119,9 +119,9 @@
 	if ([listaSorteos count]) {
 		
 
-	Sorteo *s=[listaSorteos objectAtIndex:indexPath.row];
-	cell.textLabel.text = s.nombre;
-	cell.detailTextLabel.text = [NSString stringWithFormat:@"%i",s.sorteoId];
+	Sorteo *lot=[listaSorteos objectAtIndex:indexPath.row];
+	cell.textLabel.text = lot.nombre;
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"%i",lot.sorteoId];
 	}	
     return cell;
 }
@@ -173,14 +173,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
 
-	Sorteo *s=[[Sorteo alloc]init];
-	s=[listaSorteos objectAtIndex:indexPath.row];
-	SorteoViewController *detailViewController = [[SorteoViewController alloc] initWithNibName:@"SorteoViewController" sorteo:s];
+
+	SorteoViewController *detailViewController = [[SorteoViewController alloc] 
+												  initWithNibName:@"SorteoViewController" 
+														   sorteo: [listaSorteos objectAtIndex:indexPath.row]];
 	
 	[self.navigationController pushViewController:detailViewController animated:YES];
 	
 	[detailViewController release];
-	[s release];
+
 }
 
 

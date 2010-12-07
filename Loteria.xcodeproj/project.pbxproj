@@ -24,6 +24,10 @@
 		AAA201021291156700145963 /* im1.png in Resources */ = {isa = PBXBuildFile; fileRef = AAA201011291156700145963 /* im1.png */; };
 		AAA2012112911D4200145963 /* SplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA2012012911D4200145963 /* SplashView.m */; };
 		AAA20176129122C000145963 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA20175129122C000145963 /* QuartzCore.framework */; };
+		AAC3FB5B12ADF345005C1CB1 /* ResultadoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC3FB5912ADF345005C1CB1 /* ResultadoViewController.m */; };
+		AAC3FB5C12ADF345005C1CB1 /* ResultadoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAC3FB5A12ADF345005C1CB1 /* ResultadoViewController.xib */; };
+		AAC3FB7212ADFFF1005C1CB1 /* resfondo.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3FB7012ADFFF1005C1CB1 /* resfondo.png */; };
+		AAC3FB7312ADFFF1005C1CB1 /* resfondo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3FB7112ADFFF1005C1CB1 /* resfondo@2x.png */; };
 		AACB673812A4DE14009BBB0A /* portada.png in Resources */ = {isa = PBXBuildFile; fileRef = AACB673712A4DE14009BBB0A /* portada.png */; };
 		AACB674A12A4E339009BBB0A /* portada@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AACB674912A4E339009BBB0A /* portada@2x.png */; };
 /* End PBXBuildFile section */
@@ -57,6 +61,11 @@
 		AAA2011F12911D4200145963 /* SplashView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashView.h; sourceTree = "<group>"; };
 		AAA2012012911D4200145963 /* SplashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashView.m; sourceTree = "<group>"; };
 		AAA20175129122C000145963 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AAC3FB5812ADF345005C1CB1 /* ResultadoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultadoViewController.h; sourceTree = "<group>"; };
+		AAC3FB5912ADF345005C1CB1 /* ResultadoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultadoViewController.m; sourceTree = "<group>"; };
+		AAC3FB5A12ADF345005C1CB1 /* ResultadoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ResultadoViewController.xib; path = Classes/ResultadoViewController.xib; sourceTree = "<group>"; };
+		AAC3FB7012ADFFF1005C1CB1 /* resfondo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resfondo.png; sourceTree = "<group>"; };
+		AAC3FB7112ADFFF1005C1CB1 /* resfondo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "resfondo@2x.png"; sourceTree = "<group>"; };
 		AACB673712A4DE14009BBB0A /* portada.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = portada.png; sourceTree = "<group>"; };
 		AACB674912A4E339009BBB0A /* portada@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "portada@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,6 +104,8 @@
 				AA744A5C1292659600D1619C /* XMLParser.m */,
 				AA9D41621298A80500CD0A63 /* Boleto.h */,
 				AA9D41631298A80500CD0A63 /* Boleto.m */,
+				AAC3FB5812ADF345005C1CB1 /* ResultadoViewController.h */,
+				AAC3FB5912ADF345005C1CB1 /* ResultadoViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -131,6 +142,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AAC3FB7012ADFFF1005C1CB1 /* resfondo.png */,
+				AAC3FB7112ADFFF1005C1CB1 /* resfondo@2x.png */,
+				AAC3FB5A12ADF345005C1CB1 /* ResultadoViewController.xib */,
 				AACB674912A4E339009BBB0A /* portada@2x.png */,
 				AACB673712A4DE14009BBB0A /* portada.png */,
 				AA7446FE12921D2300D1619C /* SorteoViewController.xib */,
@@ -209,6 +223,9 @@
 				AA74470012921D2300D1619C /* SorteoViewController.xib in Resources */,
 				AACB673812A4DE14009BBB0A /* portada.png in Resources */,
 				AACB674A12A4E339009BBB0A /* portada@2x.png in Resources */,
+				AAC3FB5C12ADF345005C1CB1 /* ResultadoViewController.xib in Resources */,
+				AAC3FB7212ADFFF1005C1CB1 /* resfondo.png in Resources */,
+				AAC3FB7312ADFFF1005C1CB1 /* resfondo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +245,7 @@
 				AA744A5D1292659600D1619C /* XMLParser.m in Sources */,
 				AA9D41641298A80500CD0A63 /* Boleto.m in Sources */,
 				AA9D42261298B76300CD0A63 /* XMLParserBoleto.m in Sources */,
+				AAC3FB5B12ADF345005C1CB1 /* ResultadoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

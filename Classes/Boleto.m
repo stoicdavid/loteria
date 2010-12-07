@@ -11,7 +11,7 @@
 
 @implementation Boleto
 
-@synthesize nosorteo,noboleto,signo,ganador,sorteoId,tipo,cantidad,series;
+@synthesize nosorteo,noboleto,signo,ganador,sorteoId,tipo,cantidad,series,fecha;
 
 - (id) init
 
@@ -34,7 +34,8 @@
 
 
 -(NSString*)description{
-	return [NSString stringWithFormat:@"Boleto ganador:%d con numero %@ numeroSorteo %@ ",ganador,noboleto,nosorteo];
+	return [NSString stringWithFormat:@" Número de Sorteo: %@ \n Fecha: %@ \n Billete \t Serie \t Cachito $ \t Serie $ \n %@ \t %@ \t \t \t \t %@ \t \t \t %@\t \t",
+			nosorteo,fecha,noboleto,[[series objectAtIndex:0] objectForKey:@"nombre"],[[series objectAtIndex:1] objectForKey:@"cantidad"],cantidad];
 }
 
 - (void) agregarSerie:(NSMutableDictionary *)serie

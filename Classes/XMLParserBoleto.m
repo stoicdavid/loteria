@@ -13,7 +13,7 @@
 @synthesize sorts;
 @synthesize boleto;
 
-#define INTERESTING_TAG_NAMES @"sorteo",@"tipo",@"cantidad",@"nosorteo",@"noboleto",@"nombre",@"serie", nil
+#define INTERESTING_TAG_NAMES @"sorteo",@"tipo",@"cantidad",@"nosorteo",@"noboleto",@"nombre",@"serie",@"fecha", nil
 
 
 - (XMLParserBoleto *) init{

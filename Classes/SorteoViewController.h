@@ -10,8 +10,9 @@
 #import "Sorteo.h"
 #import "Boleto.h"
 #import "XMLParserBoleto.h"
+#import "ResultadoViewController.h"
 
-@interface SorteoViewController : UIViewController<UITextFieldDelegate> {
+@interface SorteoViewController : UIViewController<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource> {
 	
 	Sorteo *sort;
 	IBOutlet UILabel *nombreSorteo;
@@ -23,11 +24,14 @@
 	NSSet *sorteosEsp;
 	Boleto *boleto;
 	BOOL botonActivo;
+	int signoId;
 	CGFloat animatedDistance;
+	NSArray *signos;
 	
 	//Variables para la conexion
 	NSMutableData *datos;
 	XMLParserBoleto *parser;
+	NSString *post;
 	
 
 }
@@ -38,7 +42,9 @@
 @property (assign) IBOutlet UITextField *numSorteoTexto;
 @property (assign) IBOutlet UITextField *numBoletoTexto;
 @property (nonatomic,retain) NSMutableData *datos;
-
+@property (nonatomic,retain) NSArray *signos;
+@property (nonatomic,copy) NSString *post;
+ 
 - (id)initWithNibName:(NSString *)nibNameOrNil sorteo:(Sorteo *)sorteo;
 
 - (IBAction) consultaResultado;

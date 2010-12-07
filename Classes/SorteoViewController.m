@@ -13,8 +13,8 @@
 @implementation SorteoViewController
 
 @synthesize nombreSorteo;
-@synthesize signo;
-@synthesize datos;
+@synthesize signo,signos;
+@synthesize datos,post;
 @synthesize signoTexto,numBoletoTexto,numSorteoTexto;
 
 static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
@@ -23,6 +23,8 @@ static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
 static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
 static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 
+#define SIGNOS @"Aries", @"Tauro", @"Géminis", @"Cancer", @"Leo", @"Virgo", @"Libra", @"Escorpio", @"Capricornio", @"Acuario",@"Piscis", nil
+
 #define SORTEOS_ESPECIALES @"4", nil
 
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -30,8 +32,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     if ((self = [super initWithNibName:nibNameOrNil bundle:nil])) {
 		sorteosEsp = [[NSSet alloc] initWithObjects:SORTEOS_ESPECIALES];
 		sort = [[Sorteo alloc]init];
-		sort.nombre = sorteo.nombre;
-		sort.sorteoId = sorteo.sorteoId;
+		sort = sorteo;
 		NSLog(@"%@",sort);
 		botonActivo=NO;
 				
@@ -39,15 +40,28 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     return self;
 }
 
-
 - (IBAction) consultaResultado
 {
 
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	
 	NSURL *url = [NSURL URLWithString:
-				  @"http://localhost:3000/inicio/noganador.xml"];
-	NSURLRequest *request = [[NSURLRequest alloc] initWithURL: url];
+				  @"http://www.lotenal.gob.mx:8080/buscador/buscador-premios-xml.jsp"];
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+	
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+	if (sort.sorteoId == 4) {
+		post = [NSString stringWithFormat:@"CmbSorteo=%i&CmbSigZod=%i&NumSorteo=%@&boleto=%@",sort.sorteoId,signoId,numSorteoTexto.text,numBoletoTexto.text];
+	}else {
+		post = [NSString stringWithFormat:@"CmbSorteo=%i&NumSorteo=%@&boleto=%@",sort.sorteoId,numSorteoTexto.text,numBoletoTexto.text];
+	}
+	NSLog(@"%@",post);
+	NSString *msjLong = [NSString stringWithFormat:@"%d",[post length]];
+	
+	[request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+	[request addValue:msjLong forHTTPHeaderField:@"Content-Length"];
+	[request setHTTPMethod:@"POST"];
+	[request setHTTPBody:[post dataUsingEncoding:NSUTF8StringEncoding]];
+	
+
 	NSURLConnection *connection = [[NSURLConnection alloc]
 								   initWithRequest:request delegate:self];
 	
@@ -58,6 +72,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
 	datos = [[NSMutableData alloc]init];
 	[datos appendData: data];
+	
 	
 }
 
@@ -81,9 +96,12 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 	boleto = parser.boleto;
 	//[self.lista agregarSorteos:parser.sorts];
 	[parser release];
-	NSLog(@"%@",boleto);
+	//NSLog(@"La cantidad es %@",boleto.cantidad);
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-		
+	ResultadoViewController *resultado = [[ResultadoViewController alloc]initWithNibName:@"ResultadoViewController" bol:boleto];
+	resultado.modalTransitionStyle=UIModalTransitionStylePartialCurl;
+	[self presentModalViewController:resultado animated:YES];
+	//[resultado release];	
 	
 }
 
@@ -191,11 +209,51 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 	}
 	numBoletoTexto.delegate=self;
 	numBoletoTexto.returnKeyType=UIReturnKeyDone;
-	signoTexto.delegate=self;
-	signoTexto.returnKeyType=UIReturnKeyDone;
+	UIPickerView *signoPicker = [[UIPickerView alloc] initWithFrame:CGRectZero];
+    signoPicker.delegate = self;
+    signoPicker.dataSource = self;
+    [signoPicker setShowsSelectionIndicator:YES];
+	signoTexto.inputView = signoPicker;
+	[signoPicker release];
+	
 	numSorteoTexto.delegate=self;
 	numSorteoTexto.returnKeyType=UIReturnKeyDone;
 	
+	signos = [[NSArray alloc]initWithObjects:SIGNOS];
+
+	
+	
+}
+
+
+#pragma mark -
+
+#pragma mark UIPickerViewDelegate
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+        return [signos objectAtIndex:row];
+}
+
+- (void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+	signoTexto.text = (NSString *)[signos objectAtIndex:row];
+	signoId=row+1;
+
+}
+
+#pragma mark -
+
+#pragma mark UIPickerViewDataSource
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+        return signos.count;
 }
 
 
@@ -222,6 +280,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 
 
 - (void)dealloc {
+	[signos release];
+	[sort release];
     [super dealloc];
 }
 
