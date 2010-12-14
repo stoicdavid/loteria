@@ -12,10 +12,12 @@
 
 @interface RootViewController : UITableViewController {
 	NSMutableArray *listaSorteos;
+	IBOutlet UITableViewCell *celda;
 
 }
 
 @property (nonatomic,retain) NSMutableArray *listaSorteos;
+@property (nonatomic, retain) IBOutlet UITableViewCell *celda;
 - (void)agregarSorteos:(NSArray *)sorteos;
 
 @end

@@ -20,13 +20,13 @@
 	NSMutableString *currentText;
 	NSString *currentSerie;
 	NSSet *interestingTags;
-	//NSMutableArray *sorts;
+	
 	NSMutableDictionary *serial;
 	Boleto *boleto;
 	BOOL serie;
 }
 //@property BOOL finished;
-@property (nonatomic, retain) NSMutableArray *sorts;
+
 @property (nonatomic, retain) Boleto *boleto;
 -(void)parsearBoletos:(NSMutableData *)data;
 

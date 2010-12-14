@@ -30,8 +30,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil sorteo:(Sorteo *)sorteo{
     if ((self = [super initWithNibName:nibNameOrNil bundle:nil])) {
-		sorteosEsp = [[NSSet alloc] initWithObjects:SORTEOS_ESPECIALES];
-		sort = [[Sorteo alloc]init];
+		sorteosEsp = [[[NSSet alloc] initWithObjects:SORTEOS_ESPECIALES] autorelease];
 		sort = sorteo;
 		NSLog(@"%@",sort);
 		botonActivo=NO;
@@ -46,7 +45,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 	NSURL *url = [NSURL URLWithString:
 				  @"http://www.lotenal.gob.mx:8080/buscador/buscador-premios-xml.jsp"];
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-	
+	//[self loadRequest:request];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	if (sort.sorteoId == 4) {
 		post = [NSString stringWithFormat:@"CmbSorteo=%i&CmbSigZod=%i&NumSorteo=%@&boleto=%@",sort.sorteoId,signoId,numSorteoTexto.text,numBoletoTexto.text];
@@ -99,10 +98,10 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 	//NSLog(@"La cantidad es %@",boleto.cantidad);
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	ResultadoViewController *resultado = [[ResultadoViewController alloc]initWithNibName:@"ResultadoViewController" bol:boleto];
-	resultado.modalTransitionStyle=UIModalTransitionStylePartialCurl;
+	resultado.modalTransitionStyle=UIModalTransitionStyleCrossDissolve;
 	[self presentModalViewController:resultado animated:YES];
 	//[resultado release];	
-	
+	[datos release];	
 }
 
 
@@ -203,7 +202,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 		signo.hidden=YES;
 		signoTexto.hidden=YES;
 	}
-	NSLog(@"Texto %@",numBoletoTexto.text);
 	if ([numBoletoTexto.text isEqual:@""]) {
 		enviar.enabled = botonActivo;
 	}
@@ -282,6 +280,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (void)dealloc {
 	[signos release];
 	[sort release];
+	//[sorteosEsp release];
     [super dealloc];
 }
 

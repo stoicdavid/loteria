@@ -10,7 +10,7 @@
 
 
 @implementation XMLParser
-@synthesize sorts;
+@synthesize sorts,sorteo;
 
 #define INTERESTING_TAG_NAMES @"sorteo",@"tipo",@"cantidad",@"nosorteo",@"noboleto",@"nombre",@"series", nil
 
@@ -18,7 +18,8 @@
 - (XMLParser *) init{
 	
 	[super init];
-	sorteo=[[Sorteo alloc]init];
+	sorteo=nil;
+	
 	return self;
 }
 
@@ -83,11 +84,11 @@
 
 
 - (void)parserDidStartDocument:(NSXMLParser *)parser {
-	
+	[sorts release];
 	currentElementName = nil;
 	interestingTags = [[NSSet alloc] initWithObjects: INTERESTING_TAG_NAMES];
+	//sorts = nil;
 	sorts = [[NSMutableArray alloc]init];
-	
 	
 }
 
@@ -101,8 +102,8 @@
 		sorteo = [[Sorteo alloc] init];
 		sorteo.nombre = [attributeDict objectForKey:@"nombre"];
 		sorteo.sorteoId = [[attributeDict objectForKey:@"id"]integerValue];
-		sorteo.image = [attributeDict objectForKey:@"imagen"];
-
+		sorteo.imagen = [attributeDict objectForKey:@"imagen"];
+		NSLog(@"imagen %@",[attributeDict objectForKey:@"imagen"]);
 	}
 	else if ([interestingTags containsObject: elementName]) { 
 		currentElementName = elementName;
@@ -167,16 +168,15 @@
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
-	[interestingTags release];
-	
+		
 	
 	//NSLog(@"%@",sorts);
 }
 
 - (void) dealloc {
-
+	[interestingTags release];
 	[sorteo release];
-	//[sorts release];
+	[sorts release];
 	
 	[super dealloc];
 }

@@ -15,13 +15,13 @@
 	NSString *descripcion;
 	BOOL flag;
 	NSInteger sorteoId;
-	NSString *image;
+	NSString *imagen;
 
 }
 @property (nonatomic, readwrite) NSInteger sorteoId;
 @property (nonatomic, copy) NSString *nombre;
 @property (nonatomic, copy) NSString *descripcion;
-@property (nonatomic, copy) NSString *image;
+@property (nonatomic, copy) NSString *imagen;
 @property (nonatomic, retain) NSMutableArray *numeroSorteo;
 @property BOOL flag;
 

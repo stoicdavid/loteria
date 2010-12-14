@@ -27,12 +27,13 @@
 	[window addSubview:navigationController.view];
 
 	NSURL *url = [NSURL URLWithString:
-				  @"http://www.lotenalweb.com:7080/resultados/sorteos.xml"];
+				  @"http://www.lotenal.gob.mx:8080/buscador/xml/sorteos.xml"];
 	NSURLRequest *request = [[NSURLRequest alloc] initWithURL: url];
 	NSURLConnection *connection = [[NSURLConnection alloc]
 								   initWithRequest:request delegate:self];
 	
 	[connection release];	
+	[request release];
 	[window makeKeyAndVisible];		
 	SplashView *mySplash = [[SplashView alloc] initWithImage:[UIImage imageNamed:@"portada.png"]];	
 
@@ -53,7 +54,7 @@
 	
 {
 
-	NSLog(@"Finish total");	
+	NSLog(@"Pantalla finalizada");	
 }
 
 
@@ -82,7 +83,8 @@
 	[self.lista agregarSorteos:parser.sorts];
 	[self.lista.tableView reloadData];//aqui hago la actualización de la tabla, aunque puede utilizarse el observer
 	NSLog(@"%@",lista.listaSorteos);
-	[parser release];	
+	[parser retain];	
+	[datos release];
 	
 }
 
@@ -138,6 +140,7 @@
 - (void)dealloc {
 	[lista release];
 	[navigationController release];
+	[parser release];
 	[window release];
 	[super dealloc];
 }

@@ -10,7 +10,7 @@
 
 
 @implementation XMLParserBoleto
-@synthesize sorts;
+
 @synthesize boleto;
 
 #define INTERESTING_TAG_NAMES @"sorteo",@"tipo",@"cantidad",@"nosorteo",@"noboleto",@"nombre",@"serie",@"fecha", nil
@@ -61,7 +61,7 @@
 		
 	}
 	else if([elementName isEqualToString:@"serie"]) {
-		serial=nil;
+		[serial release];
 		serial = [[NSMutableDictionary alloc] initWithCapacity:2];	
 		serie=YES;
 	}
@@ -122,7 +122,7 @@
 		
 	//	NSLog(@"%@",boleto);
 	
-		
+		[serial release];
 	}
 	currentText = nil;
 	
@@ -158,11 +158,11 @@
 
 - (void) dealloc {
 	[interestingTags release];
-	[serial release];
+	
 	//[boleto release];
 	//[currentElementName release];
 
-	//[sorts release];
+
 	
 	[super dealloc];
 }

@@ -24,6 +24,7 @@
 }
 //@property BOOL finished;
 @property (nonatomic, retain) NSMutableArray *sorts;
+@property (nonatomic, retain) Sorteo *sorteo;
 -(void)parsearSorteos:(NSMutableData *)data;
 
 @end

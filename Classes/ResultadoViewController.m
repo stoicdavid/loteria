@@ -25,9 +25,7 @@
 */
 - (id)initWithNibName:(NSString *)nibNameOrNil bol:(Boleto *)boleto{
     if ((self = [super initWithNibName:nibNameOrNil bundle:nil])) {
-		ticket = [[Boleto alloc]init];
 		ticket = boleto;
-		
 		terminar.enabled = NO;
 		
     }

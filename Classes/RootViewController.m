@@ -11,7 +11,7 @@
 
 @implementation RootViewController
 
-@synthesize listaSorteos;
+@synthesize listaSorteos,celda;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -20,13 +20,7 @@
 - (void)viewDidLoad {
  
     [super viewDidLoad];
-	
-	
-
-	self.listaSorteos = [NSMutableArray array];
-	
-	
-	
+	self.listaSorteos = [[NSMutableArray alloc]init];
 	self.title = @"Sorteos";
 	
 
@@ -110,18 +104,26 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+		[[NSBundle mainBundle] loadNibNamed:@"CeldaSorteo"
+									  owner:self options:NULL]; cell = celda;
+		
+		
+        //cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
 	// Configure the cell.
 
-	NSLog(@"%@",listaSorteos);
 	if ([listaSorteos count]) {
-		
+		//NSLog(@"%@",listaSorteos);	
 
 	Sorteo *lot=[listaSorteos objectAtIndex:indexPath.row];
-	cell.textLabel.text = lot.nombre;
-	cell.detailTextLabel.text = [NSString stringWithFormat:@"%i",lot.sorteoId];
+	//cell.textLabel.text = lot.nombre;
+	//cell.detailTextLabel.text = [NSString stringWithFormat:@"%i",lot.sorteoId];
+	NSURL *pic = [NSURL URLWithString:lot.imagen];
+	//cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:pic]];
+		UIImageView *sorteoImagen = (UIImageView *) [cell viewWithTag:1]; 
+		sorteoImagen.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:pic]];
+
 	}	
     return cell;
 }
@@ -179,11 +181,15 @@
 														   sorteo: [listaSorteos objectAtIndex:indexPath.row]];
 	
 	[self.navigationController pushViewController:detailViewController animated:YES];
-	
+	//[listaSorteos retain];
 	[detailViewController release];
 
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 70; // your dynamic height...
+}
 
 #pragma mark -
 #pragma mark Memory management
@@ -204,6 +210,7 @@
 
 
 - (void)dealloc {
+
 	[listaSorteos release];
     [super dealloc];
 
