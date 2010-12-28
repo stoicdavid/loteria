@@ -11,11 +11,11 @@
 
 @implementation Sorteo
 
-@synthesize nombre,descripcion,sorteoId,numeroSorteo,imagen,flag;
+@synthesize nombre,descripcion,sorteoId,numeroSorteo,imagenURL,flag;
 
 
 -(NSString*)description{
-	return [NSString stringWithFormat:@"Nombre %@ con numero %i imagen %@ descripcion:%@",nombre,sorteoId,imagen,descripcion];
+	return [NSString stringWithFormat:@"Nombre %@ con numero %i imagen %@ descripcion:%@",nombre,sorteoId,imagenURL,descripcion];
 }
 
 -(void)dealloc
@@ -23,7 +23,7 @@
 	[nombre release];
 	[descripcion release];
 	[numeroSorteo release];
-	[imagen release];
+	[imagenURL release];
 	[super dealloc];
 }
 

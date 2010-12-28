@@ -102,7 +102,9 @@
 		sorteo = [[Sorteo alloc] init];
 		sorteo.nombre = [attributeDict objectForKey:@"nombre"];
 		sorteo.sorteoId = [[attributeDict objectForKey:@"id"]integerValue];
-		sorteo.imagen = [attributeDict objectForKey:@"imagen"];
+		NSURL *pic = [NSURL URLWithString:[attributeDict objectForKey:@"imagen"]];
+		sorteo.imagenURL = [UIImage imageWithData:[NSData dataWithContentsOfURL:pic]];
+		//sorteo.imagen = [attributeDict objectForKey:@"imagen"];
 		NSLog(@"imagen %@",[attributeDict objectForKey:@"imagen"]);
 	}
 	else if ([interestingTags containsObject: elementName]) { 
@@ -139,6 +141,7 @@
 		else if	([elementName isEqualToString:@"flag-extra"]){
 			sorteo.flag=[elementName boolValue];
 		}
+
 		
 		
 	} else if ([elementName isEqualToString:@"sorteo"]) {

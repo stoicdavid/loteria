@@ -11,12 +11,15 @@
 #import "Sorteo.h"
 
 @interface RootViewController : UITableViewController {
+
+	UITableViewCell *celda;
+	@private 
 	NSMutableArray *listaSorteos;
-	IBOutlet UITableViewCell *celda;
 
 }
 
-@property (nonatomic,retain) NSMutableArray *listaSorteos;
+@property (retain) NSMutableArray *listaSorteos;
+
 @property (nonatomic, retain) IBOutlet UITableViewCell *celda;
 - (void)agregarSorteos:(NSArray *)sorteos;
 

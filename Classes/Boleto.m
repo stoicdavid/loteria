@@ -34,8 +34,34 @@
 
 
 -(NSString*)description{
-	return [NSString stringWithFormat:@" Número de Sorteo: %@ \n Fecha: %@ \n Billete \t Serie \t Cachito $ \t Serie $ \n %@ \t %@ \t \t \t \t %@ \t \t \t %@\t \t",
-			nosorteo,fecha,noboleto,[[series objectAtIndex:0] objectForKey:@"nombre"],[[series objectAtIndex:1] objectForKey:@"cantidad"],cantidad];
+	NSMutableString *print = [NSMutableString stringWithFormat:@"Número de Sorteo: %@ \nFecha: %@",nosorteo,fecha];
+	
+	NSString *encabezado = [NSString stringWithFormat:@"\nBillete\tSerie\t\tCachito$\t\tSerie$"];
+	
+	
+	NSMutableString *cadenaSerie = [NSMutableString stringWithFormat:@"\n"];
+	NSLog(@"%@",series);
+	for (NSDictionary *serie in series){
+		
+		if ([serie objectForKey:@"nombre"] == nil) {
+			return print;
+		}
+		[cadenaSerie appendString:[NSString stringWithFormat:@"%@\t\t\t",noboleto]];
+		[cadenaSerie appendString:[[serie objectForKey:@"nombre"] stringByPaddingToLength:6 withString:@"\t" startingAtIndex:0]];
+		NSNumber *cach = [NSNumber numberWithInt:[[serie objectForKey:@"cachito"] intValue]];
+		
+		[cadenaSerie appendString:[[NSNumberFormatter localizedStringFromNumber:cach numberStyle:NSNumberFormatterDecimalStyle] 
+									stringByPaddingToLength:10 withString:@"\t" startingAtIndex:0]];
+		NSNumber *cant = [NSNumber numberWithInt:[[serie objectForKey:@"cantidad"] intValue]];		
+		[cadenaSerie appendString:[NSNumberFormatter localizedStringFromNumber:cant numberStyle:NSNumberFormatterDecimalStyle]];
+		[cadenaSerie appendString:@"\n"];
+	}
+	
+		 [print appendString:encabezado];
+		 [print appendString:cadenaSerie];
+		 return print;	 
+	//return [NSString stringWithFormat:@" Número de Sorteo: %@ \n Fecha: %@ \n Billete \t Serie \t Cachito $ \t Serie $ \n %@ \t %@ \t \t \t \t %@ \t \t \t %@\t \t",
+		//	nosorteo,fecha,noboleto,[[series objectAtIndex:0] objectForKey:@"nombre"],[[series objectAtIndex:1] objectForKey:@"cantidad"],cantidad];
 }
 
 - (void) agregarSerie:(NSMutableDictionary *)serie

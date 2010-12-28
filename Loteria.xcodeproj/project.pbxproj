@@ -16,6 +16,11 @@
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
 		AA0BFB8312B72669001AB10C /* CeldaSorteo.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA0BFB8212B72669001AB10C /* CeldaSorteo.xib */; };
+		AA4E6C2C12C3782000BA1E66 /* enviar_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = AA4E6C2812C3782000BA1E66 /* enviar_btn.png */; };
+		AA4E6C2D12C3782000BA1E66 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = AA4E6C2912C3782000BA1E66 /* Icon-72.png */; };
+		AA4E6C2E12C3782000BA1E66 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AA4E6C2A12C3782000BA1E66 /* Icon.png */; };
+		AA4E6C2F12C3782000BA1E66 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA4E6C2B12C3782000BA1E66 /* Icon@2x.png */; };
+		AA4E6C3812C37A7500BA1E66 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = AA4E6C3712C37A7500BA1E66 /* iTunesArtwork */; };
 		AA7446FF12921D2300D1619C /* SorteoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7446FD12921D2300D1619C /* SorteoViewController.m */; };
 		AA74470012921D2300D1619C /* SorteoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA7446FE12921D2300D1619C /* SorteoViewController.xib */; };
 		AA744A4C129262C600D1619C /* Sorteo.m in Sources */ = {isa = PBXBuildFile; fileRef = AA744A4B129262C600D1619C /* Sorteo.m */; };
@@ -48,6 +53,11 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Loteria-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Loteria-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		AA0BFB8212B72669001AB10C /* CeldaSorteo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CeldaSorteo.xib; sourceTree = "<group>"; };
+		AA4E6C2812C3782000BA1E66 /* enviar_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enviar_btn.png; sourceTree = "<group>"; };
+		AA4E6C2912C3782000BA1E66 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		AA4E6C2A12C3782000BA1E66 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		AA4E6C2B12C3782000BA1E66 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		AA4E6C3712C37A7500BA1E66 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		AA7446FC12921D2300D1619C /* SorteoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SorteoViewController.h; sourceTree = "<group>"; };
 		AA7446FD12921D2300D1619C /* SorteoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SorteoViewController.m; sourceTree = "<group>"; };
 		AA7446FE12921D2300D1619C /* SorteoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SorteoViewController.xib; path = Classes/SorteoViewController.xib; sourceTree = "<group>"; };
@@ -144,6 +154,11 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AA4E6C3712C37A7500BA1E66 /* iTunesArtwork */,
+				AA4E6C2812C3782000BA1E66 /* enviar_btn.png */,
+				AA4E6C2912C3782000BA1E66 /* Icon-72.png */,
+				AA4E6C2A12C3782000BA1E66 /* Icon.png */,
+				AA4E6C2B12C3782000BA1E66 /* Icon@2x.png */,
 				AAC3FB7012ADFFF1005C1CB1 /* resfondo.png */,
 				AAC3FB7112ADFFF1005C1CB1 /* resfondo@2x.png */,
 				AAC3FB5A12ADF345005C1CB1 /* ResultadoViewController.xib */,
@@ -230,6 +245,11 @@
 				AAC3FB7212ADFFF1005C1CB1 /* resfondo.png in Resources */,
 				AAC3FB7312ADFFF1005C1CB1 /* resfondo@2x.png in Resources */,
 				AA0BFB8312B72669001AB10C /* CeldaSorteo.xib in Resources */,
+				AA4E6C2C12C3782000BA1E66 /* enviar_btn.png in Resources */,
+				AA4E6C2D12C3782000BA1E66 /* Icon-72.png in Resources */,
+				AA4E6C2E12C3782000BA1E66 /* Icon.png in Resources */,
+				AA4E6C2F12C3782000BA1E66 /* Icon@2x.png in Resources */,
+				AA4E6C3812C37A7500BA1E66 /* iTunesArtwork in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +286,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Loteria_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "Loteria-Info.plist";
 				PRODUCT_NAME = Loteria;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

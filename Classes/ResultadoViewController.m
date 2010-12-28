@@ -11,7 +11,7 @@
 
 @implementation ResultadoViewController
 
-@synthesize header1,header2,xml,sorteo;
+@synthesize header1,header2,xml,contenedor;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
@@ -46,7 +46,7 @@
 		header2.text = @"¡Sigue participando!";
 		xml.hidden=TRUE;
 	}
-	sorteo.text = ticket.tipo;
+	//sorteo.text = ticket.tipo;
 
 
 	
@@ -56,6 +56,9 @@
 	[self.parentViewController dismissModalViewControllerAnimated:YES];
 }
 
+- (void)agregaImagen:(UIImage *)imagen{
+	contenedor.image=imagen;
+}
 
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -81,6 +84,7 @@
 
 - (void)dealloc {
 	[ticket release];
+	[contenedor release];
     [super dealloc];
 }
 

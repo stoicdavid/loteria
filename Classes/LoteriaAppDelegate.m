@@ -82,8 +82,8 @@
 	[parser parsearSorteos:datos];
 	[self.lista agregarSorteos:parser.sorts];
 	[self.lista.tableView reloadData];//aqui hago la actualización de la tabla, aunque puede utilizarse el observer
-	NSLog(@"%@",lista.listaSorteos);
-	[parser retain];	
+	//NSLog(@"%@",lista.listaSorteos);
+	[parser release];	
 	[datos release];
 	
 }
@@ -140,7 +140,7 @@
 - (void)dealloc {
 	[lista release];
 	[navigationController release];
-	[parser release];
+	//[parser release];
 	[window release];
 	[super dealloc];
 }

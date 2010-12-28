@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 #import "SorteoViewController.h"
 
+
 @implementation RootViewController
 
 @synthesize listaSorteos,celda;
@@ -16,15 +17,23 @@
 #pragma mark -
 #pragma mark View lifecycle
 
+- (void)agregarSorteos:(NSArray *)sorteos
+{
+	
+	//[self willChangeValueForKey:@"listaSorteos"];
+	[listaSorteos addObjectsFromArray:sorteos];
+	//[self didChangeValueForKey:@"listaSorteos"];	
+}
 
 - (void)viewDidLoad {
  
     [super viewDidLoad];
-	self.listaSorteos = [[NSMutableArray alloc]init];
+	listaSorteos = [[NSMutableArray alloc]init];
 	self.title = @"Sorteos";
 	
 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // Uncomment the following line to display an Edit but
+	//ton in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	[self addObserver:self forKeyPath:@"listaSorteos" options:0 context:NULL];
 }
@@ -63,13 +72,7 @@
  */
 
 
-- (void)agregarSorteos:(NSArray *)sorteos
-{
-	
-	//[self willChangeValueForKey:@"listaSorteos"];
-	[self.listaSorteos addObjectsFromArray:sorteos];
-	//[self didChangeValueForKey:@"listaSorteos"];	
-}
+
 
 // para los cambios en la interfaz no se usa por ahora
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -99,33 +102,25 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
 
-    
+    	
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
     if (cell == nil) {
 		[[NSBundle mainBundle] loadNibNamed:@"CeldaSorteo"
-									  owner:self options:NULL]; cell = celda;
+									  owner:self options:NULL]; 
+		cell = celda;
 		
-		
-        //cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-	// Configure the cell.
+		self.celda= nil;
+	}
 
-	if ([listaSorteos count]) {
-		//NSLog(@"%@",listaSorteos);	
-
-	Sorteo *lot=[listaSorteos objectAtIndex:indexPath.row];
-	//cell.textLabel.text = lot.nombre;
-	//cell.detailTextLabel.text = [NSString stringWithFormat:@"%i",lot.sorteoId];
-	NSURL *pic = [NSURL URLWithString:lot.imagen];
-	//cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:pic]];
+		Sorteo *lot=[listaSorteos objectAtIndex:indexPath.row];
 		UIImageView *sorteoImagen = (UIImageView *) [cell viewWithTag:1]; 
-		sorteoImagen.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:pic]];
+		sorteoImagen.image = lot.imagenURL;
 
-	}	
     return cell;
+
 }
 
 
@@ -173,22 +168,22 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-
-
+    //[listaSorteos retain];
+	
+	//[listaSorteos retain];
 	SorteoViewController *detailViewController = [[SorteoViewController alloc] 
 												  initWithNibName:@"SorteoViewController" 
-														   sorteo: [listaSorteos objectAtIndex:indexPath.row]];
+														   sorteo: [listaSorteos objectAtIndex:[indexPath row]]];
 	
 	[self.navigationController pushViewController:detailViewController animated:YES];
-	//[listaSorteos retain];
+	detailViewController=nil;
 	[detailViewController release];
 
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 70; // your dynamic height...
+    return 80; // your dynamic height...
 }
 
 #pragma mark -
@@ -203,7 +198,7 @@
 
 - (void)viewDidUnload {
 
-	self.listaSorteos = nil;
+	//self.listaSorteos = nil;
     
     [self removeObserver:self forKeyPath:@"listaSorteos"];
 }

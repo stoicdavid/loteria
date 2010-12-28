@@ -15,17 +15,17 @@
 	IBOutlet UILabel *header1;
 	IBOutlet UILabel *header2;
 	IBOutlet UILabel *xml;
-	IBOutlet UILabel *sorteo;
-
+	IBOutlet UIImageView *contenedor;
 }
 
 @property (assign) IBOutlet UILabel *header1;
 @property (assign) IBOutlet UILabel *header2;
 @property (assign) IBOutlet UILabel *xml;
-@property (assign) IBOutlet UILabel *sorteo;
+@property (retain) IBOutlet UIImageView *contenedor;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bol:(Boleto *)boleto;
-
+- (void)agregaImagen:(UIImage *)imagen;
 - (IBAction) regresar;
 
 @end

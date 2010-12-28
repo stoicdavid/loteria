@@ -44,22 +44,24 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 
 	NSURL *url = [NSURL URLWithString:
 				  @"http://www.lotenal.gob.mx:8080/buscador/buscador-premios-xml.jsp"];
+	//NSURL *url = [NSURL URLWithString:
+	//			  @"http://localhost:3000/ganador.xml"];
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
 	//[self loadRequest:request];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	if (sort.sorteoId == 4) {
-		post = [NSString stringWithFormat:@"CmbSorteo=%i&CmbSigZod=%i&NumSorteo=%@&boleto=%@",sort.sorteoId,signoId,numSorteoTexto.text,numBoletoTexto.text];
-	}else {
-		post = [NSString stringWithFormat:@"CmbSorteo=%i&NumSorteo=%@&boleto=%@",sort.sorteoId,numSorteoTexto.text,numBoletoTexto.text];
-	}
-	NSLog(@"%@",post);
-	NSString *msjLong = [NSString stringWithFormat:@"%d",[post length]];
-	
-	[request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-	[request addValue:msjLong forHTTPHeaderField:@"Content-Length"];
-	[request setHTTPMethod:@"POST"];
-	[request setHTTPBody:[post dataUsingEncoding:NSUTF8StringEncoding]];
-	
+	 if (sort.sorteoId == 4) {
+		    post = [NSString stringWithFormat:@"CmbSorteo=%i&CmbSigZod=%i&NumSorteo=%@&boleto=%@",sort.sorteoId,signoId,numSorteoTexto.text,numBoletoTexto.text];
+	    }else {
+		    post = [NSString stringWithFormat:@"CmbSorteo=%i&NumSorteo=%@&boleto=%@",sort.sorteoId,numSorteoTexto.text,numBoletoTexto.text];
+	    }
+	    NSLog(@"%@",post);
+	    NSString *msjLong = [NSString stringWithFormat:@"%d",[post length]]; 
+	    
+		 [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+		    [request addValue:msjLong forHTTPHeaderField:@"Content-Length"];
+		    [request setHTTPMethod:@"POST"];
+		    [request setHTTPBody:[post dataUsingEncoding:NSUTF8StringEncoding]]; 
+	     
 
 	NSURLConnection *connection = [[NSURLConnection alloc]
 								   initWithRequest:request delegate:self];
@@ -97,9 +99,14 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 	[parser release];
 	//NSLog(@"La cantidad es %@",boleto.cantidad);
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	[numBoletoTexto resignFirstResponder];
+	[numSorteoTexto resignFirstResponder];
+	[signoTexto resignFirstResponder];
 	ResultadoViewController *resultado = [[ResultadoViewController alloc]initWithNibName:@"ResultadoViewController" bol:boleto];
+	
 	resultado.modalTransitionStyle=UIModalTransitionStyleCrossDissolve;
 	[self presentModalViewController:resultado animated:YES];
+	[resultado agregaImagen:sort.imagenURL];
 	//[resultado release];	
 	[datos release];	
 }
@@ -112,6 +119,34 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 	[numSorteoTexto resignFirstResponder];
 	[signoTexto resignFirstResponder];
 	// save the value of the textfield, ...
+	
+}
+
+
+- (IBAction)limitaCaracteres:(id)sender 
+{
+    NSString *text = nil;
+    switch ([sender tag] ) 
+    {
+        case 1: 
+        {
+            text = numSorteoTexto.text;
+            if (4 < [text length]) {
+                numSorteoTexto.text = [text substringToIndex:4];
+            }
+        }
+            break;
+		case 2:
+		{
+            text = numBoletoTexto.text;
+            if (8 < [text length]) {
+                numBoletoTexto.text = [text substringToIndex:8];
+            }
+        }	
+			break;
+        default:
+            break;
+    }
 	
 }
 

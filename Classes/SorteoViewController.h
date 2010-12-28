@@ -48,6 +48,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil sorteo:(Sorteo *)sorteo;
 
 - (IBAction) consultaResultado;
+- (IBAction) limitaCaracteres:(id)sender;
 
 
 @end
