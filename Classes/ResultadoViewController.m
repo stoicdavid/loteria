@@ -44,12 +44,19 @@
 	}else {
 		header1.text = @"Lo sentimos";
 		header2.text = @"¡Sigue participando!";
-		xml.hidden=TRUE;
+		xml.text= @"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tVisita nuestro sitio web en \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\thttp://www.lotenal.gob.mx";
+		
 	}
 	//sorteo.text = ticket.tipo;
 
 
 	
+}
+
+
+- (IBAction) informacion{
+	NSURL *target = [[NSURL alloc] initWithString:@"http://www.lotenal.gob.mx/index.php"];
+    [[UIApplication sharedApplication] openURL:target];
 }
 
 - (IBAction) regresar{

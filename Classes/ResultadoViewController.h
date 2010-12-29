@@ -12,10 +12,12 @@
 @interface ResultadoViewController : UIViewController {
 	Boleto *ticket;
 	IBOutlet UIButton *terminar;
+	IBOutlet UIButton *info;
 	IBOutlet UILabel *header1;
 	IBOutlet UILabel *header2;
 	IBOutlet UILabel *xml;
 	IBOutlet UIImageView *contenedor;
+
 }
 
 @property (assign) IBOutlet UILabel *header1;
@@ -27,5 +29,6 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bol:(Boleto *)boleto;
 - (void)agregaImagen:(UIImage *)imagen;
 - (IBAction) regresar;
+- (IBAction) informacion;
 
 @end

@@ -30,6 +30,7 @@
 		AAA201021291156700145963 /* im1.png in Resources */ = {isa = PBXBuildFile; fileRef = AAA201011291156700145963 /* im1.png */; };
 		AAA2012112911D4200145963 /* SplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA2012012911D4200145963 /* SplashView.m */; };
 		AAA20176129122C000145963 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA20175129122C000145963 /* QuartzCore.framework */; };
+		AAB58DDE12CAE78900B2E0DF /* back_button.png in Resources */ = {isa = PBXBuildFile; fileRef = AAB58DDD12CAE78900B2E0DF /* back_button.png */; };
 		AAC3FB5B12ADF345005C1CB1 /* ResultadoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC3FB5912ADF345005C1CB1 /* ResultadoViewController.m */; };
 		AAC3FB5C12ADF345005C1CB1 /* ResultadoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAC3FB5A12ADF345005C1CB1 /* ResultadoViewController.xib */; };
 		AAC3FB7212ADFFF1005C1CB1 /* resfondo.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3FB7012ADFFF1005C1CB1 /* resfondo.png */; };
@@ -73,6 +74,7 @@
 		AAA2011F12911D4200145963 /* SplashView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashView.h; sourceTree = "<group>"; };
 		AAA2012012911D4200145963 /* SplashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashView.m; sourceTree = "<group>"; };
 		AAA20175129122C000145963 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AAB58DDD12CAE78900B2E0DF /* back_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_button.png; sourceTree = "<group>"; };
 		AAC3FB5812ADF345005C1CB1 /* ResultadoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultadoViewController.h; sourceTree = "<group>"; };
 		AAC3FB5912ADF345005C1CB1 /* ResultadoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultadoViewController.m; sourceTree = "<group>"; };
 		AAC3FB5A12ADF345005C1CB1 /* ResultadoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ResultadoViewController.xib; path = Classes/ResultadoViewController.xib; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AAB58DDD12CAE78900B2E0DF /* back_button.png */,
 				AA4E6C3712C37A7500BA1E66 /* iTunesArtwork */,
 				AA4E6C2812C3782000BA1E66 /* enviar_btn.png */,
 				AA4E6C2912C3782000BA1E66 /* Icon-72.png */,
@@ -250,6 +253,7 @@
 				AA4E6C2E12C3782000BA1E66 /* Icon.png in Resources */,
 				AA4E6C2F12C3782000BA1E66 /* Icon@2x.png in Resources */,
 				AA4E6C3812C37A7500BA1E66 /* iTunesArtwork in Resources */,
+				AAB58DDE12CAE78900B2E0DF /* back_button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

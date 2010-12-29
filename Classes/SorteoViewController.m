@@ -49,19 +49,19 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
 	//[self loadRequest:request];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	 if (sort.sorteoId == 4) {
-		    post = [NSString stringWithFormat:@"CmbSorteo=%i&CmbSigZod=%i&NumSorteo=%@&boleto=%@",sort.sorteoId,signoId,numSorteoTexto.text,numBoletoTexto.text];
-	    }else {
-		    post = [NSString stringWithFormat:@"CmbSorteo=%i&NumSorteo=%@&boleto=%@",sort.sorteoId,numSorteoTexto.text,numBoletoTexto.text];
-	    }
-	    NSLog(@"%@",post);
-	    NSString *msjLong = [NSString stringWithFormat:@"%d",[post length]]; 
-	    
-		 [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-		    [request addValue:msjLong forHTTPHeaderField:@"Content-Length"];
-		    [request setHTTPMethod:@"POST"];
-		    [request setHTTPBody:[post dataUsingEncoding:NSUTF8StringEncoding]]; 
-	     
+	  if (sort.sorteoId == 4) {
+			    post = [NSString stringWithFormat:@"CmbSorteo=%i&CmbSigZod=%i&NumSorteo=%@&boleto=%@",sort.sorteoId,signoId,numSorteoTexto.text,numBoletoTexto.text];
+		    }else {
+			    post = [NSString stringWithFormat:@"CmbSorteo=%i&NumSorteo=%@&boleto=%@",sort.sorteoId,numSorteoTexto.text,numBoletoTexto.text];
+		    }
+		    NSLog(@"%@",post);
+		    NSString *msjLong = [NSString stringWithFormat:@"%d",[post length]]; 
+		    
+			 [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+			    [request addValue:msjLong forHTTPHeaderField:@"Content-Length"];
+			    [request setHTTPMethod:@"POST"];
+			    [request setHTTPBody:[post dataUsingEncoding:NSUTF8StringEncoding]]; 
+	          
 
 	NSURLConnection *connection = [[NSURLConnection alloc]
 								   initWithRequest:request delegate:self];
@@ -232,10 +232,12 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.title = @"Consulta tu resultado";
-	nombreSorteo.text =sort.nombre;
+	nombreSorteo.image =sort.imagenURL;
 	if (![sorteosEsp containsObject:[NSString stringWithFormat:@"%i",sort.sorteoId]]) {
 		signo.hidden=YES;
 		signoTexto.hidden=YES;
+		
+		
 	}
 	if ([numBoletoTexto.text isEqual:@""]) {
 		enviar.enabled = botonActivo;

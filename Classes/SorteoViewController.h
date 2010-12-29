@@ -15,7 +15,7 @@
 @interface SorteoViewController : UIViewController<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource> {
 	
 	Sorteo *sort;
-	IBOutlet UILabel *nombreSorteo;
+	IBOutlet UIImageView *nombreSorteo;
 	IBOutlet UILabel *signo;
 	IBOutlet UITextField *signoTexto;
 	IBOutlet UITextField *numSorteoTexto;
@@ -36,7 +36,7 @@
 
 }
 
-@property (assign) IBOutlet UILabel *nombreSorteo;
+@property (retain) IBOutlet UIImageView *nombreSorteo;
 @property (assign) IBOutlet UILabel *signo;
 @property (assign) IBOutlet UITextField *signoTexto;
 @property (assign) IBOutlet UITextField *numSorteoTexto;
